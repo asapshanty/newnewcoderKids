@@ -152,9 +152,9 @@
                                         <children>
                                             <Button fx:id="btnClrInventory" layoutX="133.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleClearSelection" prefHeight="27.0" prefWidth="65.0" text="Clear" />
                                             <Button fx:id="btnExitInventory" layoutX="52.0" layoutY="98.0" mnemonicParsing="false" onAction="#closeAction" prefHeight="27.0" prefWidth="66.0" text="Exit" />
-                                            <Button fx:id="btnAddInventory" layoutX="24.0" layoutY="46.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="60.0" text=" Add " />
-                                            <Button fx:id="btnDelInventory" layoutX="172.0" layoutY="46.0" mnemonicParsing="false" text="Delete" />
-                                            <Button fx:id="btnUpdInventory" layoutX="95.0" layoutY="46.0" mnemonicParsing="false" text="Update" />
+                                            <Button fx:id="btnAddInventory" layoutX="24.0" layoutY="46.0" mnemonicParsing="false" onAction="#addNewDevice" prefHeight="27.0" prefWidth="60.0" text=" Add " />
+                                            <Button fx:id="btnDelInventory" layoutX="172.0" layoutY="46.0" mnemonicParsing="false" onAction="#delDevice" text="Delete" />
+                                            <Button fx:id="btnUpdInventory" layoutX="95.0" layoutY="46.0" mnemonicParsing="false" onAction="#editDevice" text="Update" />
                                         </children>
                                     </AnchorPane>
                                 </children>
@@ -166,7 +166,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="classTable" prefHeight="669.0" prefWidth="616.0" BorderPane.alignment="CENTER">
+                        <TableView fx:id="classTable" prefHeight="669.0" prefWidth="664.0" BorderPane.alignment="CENTER">
                            <columns>
                               <TableColumn prefWidth="109.0" text="ID" />
                               <TableColumn prefWidth="138.0" text="Model" />
@@ -174,7 +174,7 @@
                               <TableColumn prefWidth="154.0" text="Date Added" />
                            </columns>
                         </TableView>
-                        <VBox layoutX="614.0" prefHeight="669.0" prefWidth="286.0" AnchorPane.leftAnchor="614.0" AnchorPane.rightAnchor="0.0" BorderPane.alignment="CENTER">
+                        <VBox layoutX="667.0" prefHeight="669.0" prefWidth="233.0" AnchorPane.leftAnchor="667.0" AnchorPane.rightAnchor="0.0" BorderPane.alignment="CENTER">
                            <children>
                               <Label text="Devices" textAlignment="CENTER">
                                  <font>
@@ -184,17 +184,17 @@
                                     <Insets left="80.0" top="15.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="deviceModel" prefHeight="27.0" prefWidth="229.0" promptText="Model">
+                              <TextField fx:id="deviceMod" prefHeight="27.0" prefWidth="229.0" promptText="Model">
                                  <VBox.margin>
                                     <Insets left="5.0" right="5.0" top="30.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="deviceSerialNumber" prefHeight="27.0" prefWidth="229.0" promptText="Serial Number">
+                              <TextField fx:id="deviceSrllNumber" prefHeight="27.0" prefWidth="229.0" promptText="Serial Number">
                                  <VBox.margin>
                                     <Insets left="5.0" right="5.0" top="10.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="deviceDateAcquired" prefHeight="27.0" prefWidth="229.0" promptText="Date">
+                              <TextField fx:id="deviceDteAcquired" prefHeight="27.0" prefWidth="229.0" promptText="Date">
                                  <VBox.margin>
                                     <Insets left="5.0" right="5.0" top="10.0" />
                                  </VBox.margin>
@@ -219,9 +219,9 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
                                 <TextArea fx:id="txtSql" layoutX="37.0" layoutY="53.0" prefHeight="294.0" prefWidth="276.0" />
-                                <Button fx:id="btnSqlClear" layoutX="70.0" layoutY="366.0" mnemonicParsing="false"  prefHeight="27.0" prefWidth="81.0" text="Clear" />
-                                <Button fx:id="btnClearReport" layoutX="554.0" layoutY="626.0" mnemonicParsing="false"  prefHeight="27.0" prefWidth="152.0" text="Clear Report" />
-                                <Button fx:id="btnSqlRun" layoutX="198.0" layoutY="366.0" mnemonicParsing="false"  prefHeight="27.0" prefWidth="82.0" text="Run" />
+                                <Button fx:id="btnSqlClear" layoutX="70.0" layoutY="366.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="81.0" text="Clear" />
+                                <Button fx:id="btnClearReport" layoutX="554.0" layoutY="626.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="152.0" text="Clear Report" />
+                                <Button fx:id="btnSqlRun" layoutX="198.0" layoutY="366.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" text="Run" />
                                 <Label layoutX="121.0" layoutY="22.0" prefHeight="24.0" prefWidth="109.0" text="  SQL Input">
                                     <font>
                                         <Font size="18.0" />

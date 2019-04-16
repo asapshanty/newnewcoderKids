@@ -1,17 +1,22 @@
 package edu.uh.tech.cis3368.semesterproject;
 
-import edu.*;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 
+import javax.annotation.PostConstruct;
+import java.lang.module.Configuration;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class DatabaseController {
@@ -22,6 +27,19 @@ public class DatabaseController {
     public void setReturnScene(Scene scene) {
         this.returnScene = scene;
     }
+
+    @Autowired
+    AccessoryRepository accessoryRepository;
+    @Autowired
+    CheckinRepository checkinRepository;
+    @Autowired
+    CheckoutRepository checkoutRepository;
+    @Autowired
+    DeviceRepository deviceRepository;
+    @Autowired
+    EmployeeRepository employeeRepository;
+    @Autowired
+    InventoryRepository inventoryRepository;
 
     //////////////EMPLOYEE TAB///////////////
     @FXML
@@ -79,10 +97,10 @@ public class DatabaseController {
     // to populate fieldList
     public void initialize(){
         fieldList = Arrays.asList(empFirstName, empLastName, empStatus, empType, empPhone, empHireDate, empTerminationDate);
-        accessList = Arrays.asList(accessoryModel,accessorySerialNumber,accessoryDateAcquired);
-    //    chkinList = Arrays.asList(checkinCount,checkinDate);
-    //    chkoutList = Arrays.asList(checkoutCount,checkoutDate);
-        deviceList= Arrays.asList(deviceModel,deviceSerialNumber,deviceDateAcquired);
+        accessList = Arrays.asList(accessModel,accessSerialNumber,accessDateAcquired);
+    //    chkinList = Arrays.asList(chckinCount,chckinDate);
+    //    chkoutList = Arrays.asList(chckoutCount,chckoutDate);
+        deviceList= Arrays.asList(deviceMod,deviceSrllNumber,deviceDteAcquired);
 
         //initializeDis();
         clearFields();
@@ -90,33 +108,145 @@ public class DatabaseController {
 
     //////////////ACCESSORY TAB///////////////
     @FXML
-    private TextField accessoryModel;
+    private TextField accessModel;
     @FXML
-    private TextField accessorySerialNumber;
+    private TextField accessSerialNumber;
     @FXML
-    private TextField accessoryDateAcquired;
+    private TextField accessDateAcquired;
 
     //////////////CHECKIN TAB///////////////
     @FXML
-    private TextField checkinCount;
+    private TextField chckinCount;
     @FXML
-    private TextField checkinDate;
+    private TextField chckinDate;
 
     //////////////CHECKOUT TAB///////////////
     @FXML
-    private TextField checkoutCount;
+    private TextField chckoutCount;
     @FXML
-    private TextField checkoutDate;
+    private TextField chckoutDate;
 
     //////////////INVENTORY TAB///////////////
 
     //////////////DEVICE TAB///////////////
+    private ObservableList<Device> deviceData;
+    Device device;
+//    @Autowired
+//    @Qualifier("addDevice")
+//    ConfigControllers.View addDeviceView;
+
+
     @FXML
-    private TextField deviceModel;
+    private Button btnAddDev;
     @FXML
-    private TextField deviceSerialNumber;
+    private Button btnDelDev;
     @FXML
-    private TextField deviceDateAcquired;
+    private Button btnEditDev;
+    @FXML
+    private TextField deviceMod;
+    @FXML
+    private TextField deviceSrllNumber;
+    @FXML
+    private TextField deviceDteAcquired;
+    @FXML
+    private TableView<Device>  deviceTable;
+    @FXML
+    private TableColumn<Device, Integer> deviceIdPk;
+    @FXML
+    private TableColumn<Device, String> deviceModel;
+    @FXML
+    private TableColumn<Device, String> deviceSerialNumber;
+    @FXML
+    private TableColumn<Device, String> deviceDateAcquired;
+
+    @FXML
+    public void initializeDis(){ }
+
+    @PostConstruct
+    public void init(){
+        btnEditDev.setDisable(true);
+        btnDelDev.setDisable(true);
+        deviceTable.setOnMouseClicked((javafx.scene.input.MouseEvent event)->{
+            btnEditDev.setDisable(false);
+            btnDelDev.setDisable(false);
+        });
+        loadDevices();
+    }
+
+    public void loadDevices(){
+        Set<Device> views = deviceRepository.findEverything();
+        deviceData = FXCollections.observableArrayList(views);
+        deviceIdPk.setCellValueFactory(new PropertyValueFactory<Device, Integer>("deviceId"));
+        deviceModel.setCellValueFactory(new PropertyValueFactory<Device, String>("deviceModel"));
+        deviceSerialNumber.setCellValueFactory(new PropertyValueFactory<Device, String>("deviceSerialNumber"));
+        deviceDateAcquired.setCellValueFactory(new PropertyValueFactory<Device, String>("deviceDateAcquired"));
+
+        deviceTable.setItems(deviceData);
+
+
+    }
+
+    @FXML
+    private void addNewDevice(){
+        Device device = new Device();
+        device.setDeviceModel(deviceMod.getText());
+        device.setDeviceSerialNumber(deviceSrllNumber.getText());
+        device.setDeviceDateAcquired(deviceDteAcquired.getText());
+//       THIS SAVES AND FLUSHES BUT DO NOT UNBLOCK
+//        try{
+//            deviceRepository.saveAndFlush(device);
+//            deviceTable.getItems().add(device);
+//            clearFields();
+//            deviceList.getSelectionModel().clearSelection;
+//            deviceList.refresh();
+//        }
+//        catch(DataIntegrityViolationException e){
+//            showFieldError(e);
+//        }
+    }
+
+//    private void showFieldError(){
+//        var message = e.getMessage();
+//        String instructions = VALUES_MISSING_MESSAGE;
+//        String headerText = VALUES_MISSING_HEADER;
+//        if(message.contains("EMPLOYEE_EMAIL_UINDEX")){
+//            instructions = DUP_EMAIL_MESSAGE;
+//            headerText = DUP_EMAIL_HEADER;
+//        }
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION, instructions);
+//        alert.setHeaderText(headerText);
+//        alert.show();
+//
+//    }
+
+
+
+
+    @FXML
+    private void delDevice(ActionEvent actionEvent){
+        Device device = deviceTable.getSelectionModel().getSelectedItem();
+
+    }
+
+    @FXML
+    private void editDevice(ActionEvent actionEvent){
+
+        Device deviceEdit = deviceTable.getSelectionModel().getSelectedItem();
+        deviceMod.setText(deviceEdit.getDeviceModel());
+        deviceSerialNumber.setText(deviceEdit.getDeviceSerialNumber());
+        deviceDateAcquired.setText(deviceEdit.getDeviceDateAcquired());
+
+        btnEditDev.setDisable(true);
+
+
+    }
+
+
+
+
+
+
+
 
 
     //Exit

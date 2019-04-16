@@ -2,12 +2,12 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
     <persistence-unit name="NewPersistenceUnit">
-        <class>edu.Accessory</class>
-        <class>edu.Checkin</class>
-        <class>edu.Checkout</class>
-        <class>edu.Device</class>
-        <class>edu.Employee</class>
-        <class>edu.Inventory</class>
+        <class>edu.uh.tech.cis3368.semesterproject.Accessory</class>
+        <class>edu.uh.tech.cis3368.semesterproject.Checkin</class>
+        <class>edu.uh.tech.cis3368.semesterproject.Checkout</class>
+        <class>edu.uh.tech.cis3368.semesterproject.Device</class>
+        <class>edu.uh.tech.cis3368.semesterproject.Employee</class>
+        <class>edu.uh.tech.cis3368.semesterproject.Inventory</class>
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:sqlserver://Cot-CIS3365-03;database=db"/>
             <property name="toplink.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
