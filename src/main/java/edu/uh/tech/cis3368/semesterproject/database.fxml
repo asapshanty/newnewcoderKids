@@ -1,14 +1,262 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.uh.tech.cis3368.semesterproject.img.Database"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane fx:id="frame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700" prefWidth="900" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.uh.tech.cis3368.semesterproject.DatabaseController">
+    <top>
+        <TabPane prefHeight="700.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab text="Employees">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="667.0" prefWidth="634.0">
+                            <TableView fx:id="empTable" prefHeight="772.0" prefWidth="641.0" BorderPane.alignment="CENTER">
+                                <columns>
+                                    <TableColumn fx:id="idColumn" prefWidth="40.99998474121094" text="ID" />
+                                    <TableColumn fx:id="statusColumn" prefWidth="59.0" text="Status" />
+                                    <TableColumn fx:id="typeColumn" prefWidth="58.0" text="Type" />
+                                    <TableColumn fx:id="fnameColumn" prefWidth="88.0" text="First Name" />
+                                    <TableColumn fx:id="lnameColumn" prefWidth="90.0" text="Last Name" />
+                                    <TableColumn fx:id="phoneColumn" prefWidth="114.0" text="Phone Number" />
+                                    <TableColumn fx:id="hdateColumn" prefWidth="75.0" text="Hire Date" />
+                                    <TableColumn fx:id="tdateColumn" prefWidth="115.0" text="Termination Date" />
+                                </columns>
+                            </TableView>
+                            <VBox prefHeight="670.0" prefWidth="259.0" AnchorPane.leftAnchor="641.0" AnchorPane.rightAnchor="0.0">
+                                <Label text="Employees" textAlignment="CENTER">
+                                    <font>
+                                        <Font size="24.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets left="65.0" top="15.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="empFirstName" prefHeight="27.0" prefWidth="229.0" promptText="First Name">
+                                    <VBox.margin>
+                                        <Insets left="5.0" right="5.0" top="30.0" />
+                                    </VBox.margin>
+                                </TextField>
+                                <TextField fx:id="empLastName" prefHeight="27.0" prefWidth="229.0" promptText="Last Name">
+                                    <VBox.margin>
+                                        <Insets left="5.0" right="5.0" top="10.0" />
+                                    </VBox.margin></TextField>
+                                <TextField fx:id="empStatus" prefHeight="27.0" prefWidth="229.0" promptText="Status">
+                                    <VBox.margin>
+                                        <Insets left="5.0" right="5.0" top="10.0" />
+                                    </VBox.margin>
+                                </TextField>
+                                <TextField fx:id="empType" prefHeight="27.0" prefWidth="229.0" promptText="Type">
+                                    <VBox.margin>
+                                        <Insets left="5.0" right="5.0" top="10.0" />
+                                    </VBox.margin></TextField>
+                                <TextField fx:id="empPhone" prefHeight="27.0" prefWidth="229.0" promptText="Phone Number">
+                                    <VBox.margin>
+                                        <Insets left="5.0" right="5.0" top="10.0" />
+                                    </VBox.margin></TextField>
+                                <TextField fx:id="empHireDate" prefHeight="27.0" prefWidth="229.0" promptText="Hire Date">
+                                    <VBox.margin>
+                                        <Insets left="5.0" right="5.0" top="10.0" />
+                                    </VBox.margin></TextField>
+                                <TextField fx:id="empTerminationDate" prefHeight="27.0" prefWidth="229.0" promptText="Termination Date">
+                                    <VBox.margin>
+                                        <Insets left="5.0" right="5.0" top="10.0" />
+                                    </VBox.margin></TextField>
+                                <AnchorPane prefHeight="251.0" prefWidth="258.0">
+                                    <children>
+                                        <Button fx:id="btnClrEmp" layoutX="133.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleClearSelection" prefHeight="27.0" prefWidth="65.0" text="Clear" />
+                                        <Button fx:id="btnExitEmp" layoutX="52.0" layoutY="98.0" mnemonicParsing="false" onAction="#closeAction" prefHeight="27.0" prefWidth="66.0" text="Exit" />
+                                        <Button fx:id="btnAddEmp" layoutX="24.0" layoutY="46.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="60.0" text=" Add " />
+                                        <Button fx:id="btnDelEmp" layoutX="172.0" layoutY="46.0" mnemonicParsing="false" text="Delete" />
+                                        <Button fx:id="btnUpdEmp" layoutX="95.0" layoutY="46.0" mnemonicParsing="false" text="Update" />
+                                    </children>
+                                </AnchorPane>
+                                <ImageView fitHeight="145.0" fitWidth="171.0" pickOnBounds="true" preserveRatio="true">
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                </ImageView>
+                            </VBox>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Inventory">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="32.0" layoutY="40.0" prefHeight="588.0" prefWidth="837.0">
+                           <columns>
+                              <TableColumn prefWidth="60.0" text="ID" />
+                              <TableColumn prefWidth="101.0" text="Checkout" />
+                              <TableColumn prefWidth="103.0" text="Service" />
+                              <TableColumn prefWidth="128.0" text="Device" />
+                              <TableColumn prefWidth="151.0" text="Accessory" />
+                              <TableColumn prefWidth="140.0" text="Check In" />
+                              <TableColumn prefWidth="153.0" text="Physical Count" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Accessories">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <TableView fx:id="acessoryTable" prefHeight="669.0" prefWidth="616.0" BorderPane.alignment="CENTER">
+                                <columns>
+                                    <TableColumn prefWidth="109.0" text="ID" />
+                                    <TableColumn prefWidth="138.0" text="Model" />
+                                    <TableColumn prefWidth="214.0" text="Serial Number" />
+                                    <TableColumn prefWidth="154.0" text="Date Added" />
+                                </columns>
+                            </TableView>
+                            <VBox layoutX="614.0" prefHeight="669.0" prefWidth="286.0" AnchorPane.leftAnchor="614.0" AnchorPane.rightAnchor="0.0" BorderPane.alignment="CENTER">
+                                <children>
+                                    <Label text="Accessories" textAlignment="CENTER">
+                                        <font>
+                                            <Font size="24.0" />
+                                        </font>
+                                        <VBox.margin>
+                                            <Insets left="80.0" top="15.0" />
+                                        </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="accessoryModel" prefHeight="27.0" prefWidth="229.0" promptText="Model">
+                                        <VBox.margin>
+                                            <Insets left="5.0" right="5.0" top="30.0" />
+                                        </VBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="accessorySerialNumber" prefHeight="27.0" prefWidth="229.0" promptText="Serial Number">
+                                        <VBox.margin>
+                                            <Insets left="5.0" right="5.0" top="10.0" />
+                                        </VBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="accessoryDateAcquired" prefHeight="27.0" prefWidth="229.0" promptText="Date">
+                                        <VBox.margin>
+                                            <Insets left="5.0" right="5.0" top="10.0" />
+                                        </VBox.margin>
+                                    </TextField>
+                                    <AnchorPane prefHeight="251.0" prefWidth="258.0">
+                                        <children>
+                                            <Button fx:id="btnClrInventory" layoutX="133.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleClearSelection" prefHeight="27.0" prefWidth="65.0" text="Clear" />
+                                            <Button fx:id="btnExitInventory" layoutX="52.0" layoutY="98.0" mnemonicParsing="false" onAction="#closeAction" prefHeight="27.0" prefWidth="66.0" text="Exit" />
+                                            <Button fx:id="btnAddInventory" layoutX="24.0" layoutY="46.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="60.0" text=" Add " />
+                                            <Button fx:id="btnDelInventory" layoutX="172.0" layoutY="46.0" mnemonicParsing="false" text="Delete" />
+                                            <Button fx:id="btnUpdInventory" layoutX="95.0" layoutY="46.0" mnemonicParsing="false" text="Update" />
+                                        </children>
+                                    </AnchorPane>
+                                </children>
+                            </VBox>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Devices">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="classTable" prefHeight="669.0" prefWidth="616.0" BorderPane.alignment="CENTER">
+                           <columns>
+                              <TableColumn prefWidth="109.0" text="ID" />
+                              <TableColumn prefWidth="138.0" text="Model" />
+                              <TableColumn prefWidth="214.0" text="Serial Number" />
+                              <TableColumn prefWidth="154.0" text="Date Added" />
+                           </columns>
+                        </TableView>
+                        <VBox layoutX="614.0" prefHeight="669.0" prefWidth="286.0" AnchorPane.leftAnchor="614.0" AnchorPane.rightAnchor="0.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label text="Devices" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="80.0" top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="deviceModel" prefHeight="27.0" prefWidth="229.0" promptText="Model">
+                                 <VBox.margin>
+                                    <Insets left="5.0" right="5.0" top="30.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="deviceSerialNumber" prefHeight="27.0" prefWidth="229.0" promptText="Serial Number">
+                                 <VBox.margin>
+                                    <Insets left="5.0" right="5.0" top="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="deviceDateAcquired" prefHeight="27.0" prefWidth="229.0" promptText="Date">
+                                 <VBox.margin>
+                                    <Insets left="5.0" right="5.0" top="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <AnchorPane prefHeight="251.0" prefWidth="258.0">
+                                 <children>
+                                    <Button fx:id="btnClrClass" layoutX="133.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleClearSelection" prefHeight="27.0" prefWidth="65.0" text="Clear" />
+                                    <Button layoutX="52.0" layoutY="98.0" mnemonicParsing="false" onAction="#closeAction" prefHeight="27.0" prefWidth="66.0" text="Exit" />
+                                    <Button fx:id="btnAddClass" layoutX="24.0" layoutY="46.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="60.0" text=" Add " />
+                                    <Button fx:id="btnDelClass" layoutX="172.0" layoutY="46.0" mnemonicParsing="false" text="Delete" />
+                                    <Button fx:id="btnUpdClass" layoutX="95.0" layoutY="46.0" mnemonicParsing="false" text="Update" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+                </Tab>
+                <Tab text="Reports">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextArea fx:id="txtSql" layoutX="37.0" layoutY="53.0" prefHeight="294.0" prefWidth="276.0" />
+                                <Button fx:id="btnSqlClear" layoutX="70.0" layoutY="366.0" mnemonicParsing="false"  prefHeight="27.0" prefWidth="81.0" text="Clear" />
+                                <Button fx:id="btnClearReport" layoutX="554.0" layoutY="626.0" mnemonicParsing="false"  prefHeight="27.0" prefWidth="152.0" text="Clear Report" />
+                                <Button fx:id="btnSqlRun" layoutX="198.0" layoutY="366.0" mnemonicParsing="false"  prefHeight="27.0" prefWidth="82.0" text="Run" />
+                                <Label layoutX="121.0" layoutY="22.0" prefHeight="24.0" prefWidth="109.0" text="  SQL Input">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="599.0" layoutY="22.0" text="Report">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <GridPane fx:id="gridOutput" layoutX="368.0" layoutY="53.0" prefHeight="566.0" prefWidth="515.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <TableView fx:id="tableReport" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="566.0" prefWidth="531.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+                                    </children>
+                                </GridPane>
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Check-In">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                </Tab>
+            <Tab text="Check-Out">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            </tabs>
+        </TabPane>
+    </top>
+</BorderPane>
